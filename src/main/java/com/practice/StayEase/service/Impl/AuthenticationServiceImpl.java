@@ -30,13 +30,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JWTService jwtService;
 
     public User signUp(SignUpRequest signUpRequest){
-
+//        if(userRepository.findByEmail(signUpRequest.getEmail()).isPresent()) throw new
         User user = new User();
 
         user.setFirstName(signUpRequest.getFirstname());
         user.setLastName(signUpRequest.getLastname());
         user.setEmail(signUpRequest.getEmail());
-        user.setRole(Role.HOTEL_MANAGER);
+        user.setRole(signUpRequest.getRole());
         user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
         return userRepository.save(user);

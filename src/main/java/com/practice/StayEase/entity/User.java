@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -26,8 +27,8 @@ public class User implements UserDetails {
     private String lastName;
     private String password;
     private Role role;
-    private Long book1 = -1L;
-    private Long book2 = -1L;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Booking> bookings;
 
 
     @Override

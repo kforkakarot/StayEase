@@ -1,12 +1,11 @@
 package com.practice.StayEase.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,7 +19,9 @@ public class Hotel {
     private String hotelName;
     private String location;
     private String description;
-    private Long numberOfAvailableAooms;
+    private Long numberOfAvailableRooms;
 
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Booking> bookings;
 
 }

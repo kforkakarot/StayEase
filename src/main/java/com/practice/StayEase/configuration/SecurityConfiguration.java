@@ -49,7 +49,13 @@ public class SecurityConfiguration{
                     "/api/v1/books/getBookById/**",
                     "/api/v1/books/available/**",
                     "/api/v1/books/library/**"
-                ).hasAnyAuthority(Role.ADMIN.name())
+                ).hasAnyAuthority(Role.HOTEL_MANAGER.name())
+            .requestMatchers("/api/v1/user/forUser",
+                    "/api/v1/books/getAllBooks",
+                    "/api/v1/books/getBookById/**",
+                    "/api/v1/books/available/**",
+                    "/api/v1/books/library/**"
+                    ).hasAnyAuthority(Role.CUSTOMER.name())
             .anyRequest().authenticated())
 
             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

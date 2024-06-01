@@ -26,6 +26,8 @@ public class StayEaseApplication implements CommandLineRunner {
 
 	public void run(String... args){
 		User adminAccount = userRepository.findByRole(Role.ADMIN);
+		User managerAccount = userRepository.findByRole(Role.HOTEL_MANAGER);
+		User customerAccount = userRepository.findByRole(Role.CUSTOMER);
 
 		if(adminAccount == null){
 			User user = new User();
@@ -37,6 +39,27 @@ public class StayEaseApplication implements CommandLineRunner {
 			userRepository.save(user);
 		}
 
+		if(managerAccount == null){
+			User user = new User();
+			user.setFirstName("manager");
+			user.setLastName("manager");
+			user.setEmail("manager@gmail.com");
+			user.setRole(Role.HOTEL_MANAGER);
+			user.setPassword(new BCryptPasswordEncoder().encode("manager"));
+			userRepository.save(user);
+		}
+
+		if(customerAccount == null){
+			User user = new User();
+			user.setFirstName("customer");
+			user.setLastName("customer");
+			user.setEmail("customer@gmail.com");
+			user.setRole(Role.CUSTOMER);
+			user.setPassword(new BCryptPasswordEncoder().encode("customer"));
+			userRepository.save(user);
+		}
+
+
 		Hotel hotel = new Hotel();
 		hotel.setHotelName("Leela palace");
 		hotel.setDescription("Good place to stay");
@@ -46,7 +69,7 @@ public class StayEaseApplication implements CommandLineRunner {
 		hotelRepository.save(hotel);
 
 		Hotel hotel1 = new Hotel();
-		hotel1.setHotelName("Radison Blu");
+		hotel1.setHotelName("Radisson Blu");
 		hotel1.setDescription("Comfy place to stay");
 		hotel1.setLocation("Delhi");
 		hotel1.setNumberOfAvailableRooms(1000L);

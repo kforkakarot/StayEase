@@ -37,11 +37,17 @@ public class BookingServiceImpl implements BookingService {
 
             }
             else{
-                Booking newBooking = new Booking();
-                newBooking.setNumberOfRooms(1L);
-                newBooking.setHotelId(hotelId);
-                newBooking.setGuestEmail(guestEmail.getEmail());
-                return bookingRepository.save(newBooking);
+                Hotel hotelToUpdate = hotelRepository.findById(hotelId).get();
+                if(hotelToUpdate.getNumberOfAvailableRooms() > 0){
+                    hotelToUpdate.setNumberOfAvailableRooms(hotelToUpdate.getNumberOfAvailableRooms() - 1);
+                    hotelRepository.save(hotelToUpdate);
+                    Booking newBooking = new Booking();
+                    newBooking.setNumberOfRooms(1L);
+                    newBooking.setHotelId(hotelId);
+                    newBooking.setGuestEmail(guestEmail.getEmail());
+                    return bookingRepository.save(newBooking);
+                }
+
             }
         }
         throw new HotelNotfoundException("Hotel ID not found");
@@ -56,6 +62,6 @@ public class BookingServiceImpl implements BookingService {
             hotelRepository.save(hotelToUpdate);
             bookingRepository.deleteById(bookingId);
         }
-        throw  new BookingNotFoundException("Booking does not exist");
+        else throw  new BookingNotFoundException("Booking does not exist");
     }
 }

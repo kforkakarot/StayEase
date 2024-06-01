@@ -36,7 +36,7 @@ public class HotelServiceImpl implements HotelService {
         if(hotelRepository.findById(id).isPresent()){
             hotelRepository.deleteById(id);
         }
-        throw new HotelNotfoundException("Hotel Not found");
+        else throw new HotelNotfoundException("Hotel Not found");
     }
 
     @Override

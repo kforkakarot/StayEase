@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface BookingRepository extends CrudRepository<Booking, Long> {
 
-    @Query("SELECT b FROM Booking b WHERE b.hotel_id = :hotelId AND b.guest_email = :guestEmail")
+    @Query("SELECT b FROM Booking b WHERE b.hotelId = :hotelId AND b.guestEmail = :guestEmail")
     Booking findByEmailAndHotelId(@Param("hotelId") Long hotelId, @Param("guestEmail") String guestEmail);
 }

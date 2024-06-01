@@ -14,14 +14,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
-
-    private int numberOfRooms;
+    private String guestEmail;
+    private Long hotelId;
+    private Long numberOfRooms;
 }

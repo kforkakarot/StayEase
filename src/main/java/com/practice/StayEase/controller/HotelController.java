@@ -6,12 +6,14 @@ import com.practice.StayEase.entity.Hotel;
 import com.practice.StayEase.exception.HotelNotfoundException;
 import com.practice.StayEase.service.HotelService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/hotel")
@@ -29,6 +31,7 @@ public class HotelController {
         try{
             return new ResponseEntity(hotelService.findHotelById(id), HttpStatus.OK);
         }catch(HotelNotfoundException e){
+            log.error(e.getMessage());
             return  new ResponseEntity(new ErrorResponse(e.getMessage()), HttpStatus.NOT_FOUND);
         }
     }
@@ -44,6 +47,7 @@ public class HotelController {
             hotelService.deleteHotelById(id);
             return new ResponseEntity(new SuccessMessage("Deleted SuccessFully"), HttpStatus.OK);
         }catch(HotelNotfoundException e){
+            log.error(e.getMessage());
             return new ResponseEntity(new ErrorResponse(e.getMessage()),HttpStatus.NOT_FOUND);
         }
     }
@@ -53,6 +57,7 @@ public class HotelController {
         try{
             return new ResponseEntity(hotelService.updateHotelById(hotel, id), HttpStatus.OK);
         }catch(HotelNotfoundException e){
+            log.error(e.getMessage());
             return new ResponseEntity(new ErrorResponse(e.getMessage()),HttpStatus.NOT_FOUND);
         }
     }

@@ -21,7 +21,4 @@ public class Hotel {
     private String description;
     private Long numberOfAvailableRooms;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Booking> bookings;
-
 }

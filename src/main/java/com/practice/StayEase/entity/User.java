@@ -27,8 +27,8 @@ public class User implements UserDetails {
     private String lastName;
     private String password;
     private Role role;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Booking> bookings;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Booking> bookings;
 
 
     @Override

@@ -33,28 +33,16 @@ public class SecurityConfiguration{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws  Exception{
         http.csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/auth/**")
+            .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/auth/**",
+                    "/api/v1/hotel/getAllHotels/**",
+                    "/api/v1/hotel/getHotelById/**")
             .permitAll()
-            .requestMatchers("/api/v1/user/forAdmin",
-                    "/api/v1/books/getAllBooks",
-                    "/api/v1/books/getBookById/**",
-                    "/api/v1/books/available/**",
-                    "/api/v1/books/available/**",
-                    "/api/v1/books/updateBook/**",
-                    "/api/v1/books/addBook",
-                    "/api/v1/books/deleteBook/**"
+            .requestMatchers("/api/v1/hotel/deleteHotelById/**",
+                    "/api/v1/hotel/addNewHotel/**"
                 ).hasAnyAuthority(Role.ADMIN.name())
-            .requestMatchers("/api/v1/user/forUser",
-                    "/api/v1/books/getAllBooks",
-                    "/api/v1/books/getBookById/**",
-                    "/api/v1/books/available/**",
-                    "/api/v1/books/library/**"
+            .requestMatchers("/api/v1/hotel/updateHotelById/**"
                 ).hasAnyAuthority(Role.HOTEL_MANAGER.name())
-            .requestMatchers("/api/v1/user/forUser",
-                    "/api/v1/books/getAllBooks",
-                    "/api/v1/books/getBookById/**",
-                    "/api/v1/books/available/**",
-                    "/api/v1/books/library/**"
+            .requestMatchers("/api/v1/booking/**"
                     ).hasAnyAuthority(Role.CUSTOMER.name())
             .anyRequest().authenticated())
 

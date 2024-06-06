@@ -1,6 +1,8 @@
 # StayEase
 Backend using spring boot for Hotel management System with authentication and authorization using spring boot
 
+Please check the Main application class to find default entities that get created when the application is started.
+
 #Setting Up java
 
 Refer to the below document for easy installation https://www3.cs.stonybrook.edu/~amione/CSE114_Course/materials/resources/InstallingJava17.pdf

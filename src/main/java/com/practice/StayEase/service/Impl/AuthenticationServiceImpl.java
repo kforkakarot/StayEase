@@ -6,6 +6,7 @@ import com.practice.StayEase.dto.SignInRequest;
 import com.practice.StayEase.dto.SignUpRequest;
 import com.practice.StayEase.entity.Role;
 import com.practice.StayEase.entity.User;
+import com.practice.StayEase.exception.UserExistException;
 import com.practice.StayEase.repository.UserRepository;
 import com.practice.StayEase.service.AuthenticationService;
 import com.practice.StayEase.service.JWTService;
@@ -29,8 +30,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final JWTService jwtService;
 
-    public User signUp(SignUpRequest signUpRequest){
-//        if(userRepository.findByEmail(signUpRequest.getEmail()).isPresent()) throw new
+    public User signUp(SignUpRequest signUpRequest) throws UserExistException{
+        if(userRepository.findByEmail(signUpRequest.getEmail()).isPresent()) throw new UserExistException("Email Id is already present, Use a different email");
         User user = new User();
 
         user.setFirstName(signUpRequest.getFirstname());

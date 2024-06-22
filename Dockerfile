@@ -1,4 +1,4 @@
-FROM eclipse-temurin:16-jre-jammy
+FROM eclipse-temurin:21-jre-jammy
 
 # Set the working directory in the container
 WORKDIR /app

@@ -61,6 +61,7 @@ public class StayEaseApplication implements CommandLineRunner {
 
 
 		Hotel hotel = new Hotel();
+//		hotel.setId(1L);
 		hotel.setHotelName("Leela palace");
 		hotel.setDescription("Good place to stay");
 		hotel.setLocation("Delhi");
@@ -69,6 +70,7 @@ public class StayEaseApplication implements CommandLineRunner {
 		hotelRepository.save(hotel);
 
 		Hotel hotel1 = new Hotel();
+		hotel1.setId(2L);
 		hotel1.setHotelName("Radisson Blu");
 		hotel1.setDescription("Comfy place to stay");
 		hotel1.setLocation("Delhi");

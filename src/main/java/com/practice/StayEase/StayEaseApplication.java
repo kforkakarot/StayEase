@@ -61,7 +61,6 @@ public class StayEaseApplication implements CommandLineRunner {
 
 
 		Hotel hotel = new Hotel();
-//		hotel.setId(1L);
 		hotel.setHotelName("Leela palace");
 		hotel.setDescription("Good place to stay");
 		hotel.setLocation("Delhi");

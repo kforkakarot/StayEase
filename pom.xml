@@ -14,7 +14,7 @@
 	<name>StayEase</name>
 	<description>Project for Hotel booking with JWT based Authn and AuthZ</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
